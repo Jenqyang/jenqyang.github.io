@@ -21,7 +21,7 @@
     <meta name="description" content="">
     <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://jenqyang.github.io/index.html">
+<meta property="og:url" content="http://jenqyang.github.io/archives/2022/page/2/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="Jenqyang">
@@ -217,10 +217,8 @@
         }
     </script>
     
-        <body class="home-body">
-    
         <!-- header -->
-        <header class="header header-mobile index-header">
+        <header class="header header-mobile">
     <!-- top read progress line -->
     <div class="header-element">
         <div class="read-progress"></div>
@@ -251,7 +249,7 @@
 </header>
 
         <!-- fixed footer -->
-        <footer class="footer-fixed index-footer-fixed">
+        <footer class="footer-fixed">
     <!-- back to top button -->
     <div class="footer-fixed-element">
         
@@ -274,34 +272,21 @@
 
 
 
-    height:50vh;
-
 ">
     
     <!-- 主页  -->
-    
-        
-    <!-- 文章页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/wallhaven.png)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-                Jenqyang's Studio.
-            <!-- 文章页  -->
-            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
-            
-                
-                    请您批评指正
-                
-            <!-- 文章页  -->
             
         </p>
         <!-- 文章页 meta -->
@@ -443,334 +428,15 @@
             
         
         <article class="index-post">
-            <a class="abstract-title" href="/2022/07/31/Python-import-%E8%87%AA%E5%AE%9A%E4%B9%89-module/">
+            <a class="abstract-title" href="/2022/03/07/Programming-Idea/">
                 
-                <span class="abstract-title-text">Python import 自定义 module</span>
+                <span class="abstract-title-text">Programming Idea</span>
             </a>
             <div class="abstract-content">
-                这篇文章主要是对py文件里的__name__=='__main__'的其中一个用法的演示。
-源文件
-1234567891011&#x27;&#x27;&#x27;test.py&#x27;&#x27;&#x27;print(100)def a():    print(200)if __name__ == &#x27;__main__&#x27;:    print(300)    a()    def b():        print(400)
-命令行直接执行
-1234C:\Users\888\Desktop&gt;python test.py100300200
-Python...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/07/31">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/07/31</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/04/23/%E5%A4%A9%E6%A2%AF%E8%B5%9B%E7%9C%9F%E9%A2%98L1-6-%E5%AD%97%E7%AC%A6%E4%B8%B2-python%E9%A2%98%E8%A7%A3/">
-                
-                <span class="abstract-title-text">天梯赛真题L1-6(字符串)python题解</span>
-            </a>
-            <div class="abstract-content">
-                题目
-英语老师要求学生按照如下规则写一串字母：
+                if...else if... vs if...if...
+使用if...else if...让各种判断连续，当代码量较多的时候，就不易阅读，添加新的逻辑时，可能需要改动整体代码。
 
-如果写了某个大写字母，下一个就必须写同个字母的小写，或者写字母表中下一个字母的大写；
-如果写了某个小写字母，下一个就必须写同个字母的大写，或者写字母表中前一个字母的小写；
-当然也可以什么都不写，就结束这个字母串。
-
-例如 aAaABCDdcbBC 就是一个合法的字母串；而 dEFfeFGhI 就是非法的。注意 a 没有前一个字母， Z 也没有下一个字母。
-现在面对全班学生交上来的作业，老师请你写个程序自动批改。
-限制
-代码长度限制16 KB、时间限制800 ms、内存限制64 MB
-输入格式：
-输入在第一行给出一个...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/04/23">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/04/23</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/04/17/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/">
-                
-                <span class="abstract-title-text">时间序列</span>
-            </a>
-            <div class="abstract-content">
-                时间序列变化形式
-
-长期趋势变动
-季节变动
-循环变动
-不规则变动
-
-模型
-
-\(T_t\)：长期趋势项
-\(S_t\)：季节变动趋势项
-\(C_t\)：循环变动趋势项
-\(R_t\)：随机干扰项
-加法模型、乘法模型、混合模型等等 \[
-y_t=f(T_t,S_t,C_t,R_t)
-\] \(y_t\)是观察目标的观察记录，均值\(E(R_t)=0\)，方差\(Var(R_t)=\sigma^2\)
-
-预测方法
-*如果在预测时间内，
-
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/04/23">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/04/17</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/04/16/Learn-HTML/">
-                
-                <span class="abstract-title-text">Learn HTML</span>
-            </a>
-            <div class="abstract-content">
-                HTML Attributes
-📌Should use quotes!!! But using single or double quotes should according to the situation.
-
-All HTML elements can have attributes
-The href attribute of &lt;a&gt; specifies the URL of the page the link goes to
-The src attribute of &lt;img&gt; specifies the path to the image t...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/04/16">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/04/16</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/04/08/MySQL%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">
-                
-                <span class="abstract-title-text">MySQL笔记（一）</span>
-            </a>
-            <div class="abstract-content">
-                结构化查询语言（SQL）的组成
-
-数据定义语言（Data Definition Language，DDL）：在数据库中创建、修改或删除数据库对象，如表、索引、视图、存储过程、触发器、事件等。例如：create、alter、drop、truncate等。
-数据操作语言（Data Manipulation Language，DML）：用于查询、插入、修改和删除表中的数据行等。例如：select、insert、update、delete等。
-数据控制语言（Data Control Language，DCL）：包括grant和revoke等语句。通过grant语句获得权限许可，revok...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/04/08">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/04/08</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="MySQL">MySQL</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/04/05/%E5%9F%BA%E4%BA%8EOpenCV%E5%92%8C%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6%E5%AE%9E%E7%8E%B0/">
-                
-                <span class="abstract-title-text">基于OpenCV和树莓派的智能小车实现</span>
-            </a>
-            <div class="abstract-content">
-                
-
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/04/05">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/04/05</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/03/31/PyCharm%E4%BD%BF%E7%94%A8git/">
-                
-                <span class="abstract-title-text">PyCharm使用git</span>
-            </a>
-            <div class="abstract-content">
-                
-
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/03/31">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/03/31</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/03/31/PyCharm%E4%BD%BF%E7%94%A8conda%E7%8E%AF%E5%A2%83/">
-                
-                <span class="abstract-title-text">PyCharm使用conda环境</span>
-            </a>
-            <div class="abstract-content">
-                
-
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/03/31">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/03/31</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/03/12/MySQL%E7%94%9F%E6%88%90%E7%89%B9%E5%AE%9A%E5%8C%BA%E9%97%B4%E9%9A%8F%E6%9C%BA%E6%95%B4%E6%95%B0%E5%92%8C%E9%9A%8F%E6%9C%BA%E5%B0%8F%E6%95%B0/">
-                
-                <span class="abstract-title-text">MySQL生成特定区间随机整数和随机小数</span>
-            </a>
-            <div class="abstract-content">
-                RAND()生成随机数
-1SELECT RAND() AS Rand;
-
-MySQL 的RAND()函数会产生[0,1)的随机数。
-生成特定区间 [i, j] 的随机整数
-1SELECT FLOOR(i + RAND() * (j – i + 1));
-例如产生 [20, 90]区间的随机整数
-
-生成特定区间[i, j)的随机整数，并保留n位
-1SELECT ROUND((i + RAND() * (j – i)), n)
-例如产生[20, 90)区间的随机数，保留两位小数
-
-笔者认为，既然是生成随机小数，那么就不会给定闭区间，如果要生成严格闭区间的随机小数，那么...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/03/15">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/03/12</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="MySQL">MySQL</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/03/07/%E8%B7%9F%E6%9D%8E%E6%B2%90%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
-                
-                <span class="abstract-title-text">跟李沐学深度学习</span>
-            </a>
-            <div class="abstract-content">
-                矩阵乘以矩阵
-\[
-C=AB\quad where\quad C_{ik}=\sum_{j}A_{ij}B_{jk}
-\]
+而使用if...if...时，能够让各个判断独立，增加了易读性，添加新的逻辑时，不用修改整体代码，但这种方式可能会产生重复代码。
 
             </div>
             <!-- read more -->
@@ -785,7 +451,7 @@ C=AB\quad where\quad C_{ik}=\sum_{j}A_{ij}B_{jk}
                     <div class= abstract-tags >
     
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="DeepLearning">DeepLearning</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Programming-Idea">Programming-Idea</a>
     
 </div>
 
@@ -797,105 +463,12 @@ C=AB\quad where\quad C_{ik}=\sum_{j}A_{ij}B_{jk}
     <!-- paginator  -->
     
         <nav class="page-nav">
-            <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">NEXT &gt;</a>
+            <a class="extend prev" rel="prev" href="/archives/2022/">&lt; PREV</a><a class="page-number" href="/archives/2022/">1</a><span class="page-number current">2</span>
         </nav>
     
 </main>
 
                 <!-- profile -->
-                
-                    <div class="profile">
-    <img class="profile-avatar" alt="avatar" src= /avatar/ava.jpg />
-    <div class="profile-name">Jenqyang</div>
-    
-        <div class="profile-signature">
-            witness me
-        </div>
-    
-    
-        <div class="profile-social">
-            
-    
-        
-            
-                <a href="mailto:jenqyang@qq.com" class="iconfont-archer email" title=email ></a>
-            
-        
-    
-        
-            
-                <a href="//github.com/Jenqyang" class="iconfont-archer github" target="_blank" title=github></a>
-            
-        
-    
-        
-            
-                <span class="iconfont-archer wechat" title=wechat>
-                    
-                    <img class="profile-qr" src="/assets/QR_code.jpg" />
-                </span>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-            
-                <a href="https://www.v2ex.com/member/Jenqyang" class="iconfont-archer v2ex" target="_blank" title=v2ex></a>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-            
-                <a href="https://www.labxing.com/profile/11256" class="iconfont-archer others" target="_blank" title=others></a>
-            
-        
-    
-        
-    
-
-
-        </div>
-    
-    
-    
-        <div class="profile-link-item">
-            <a href="/about" class="about-me">
-                
-                ABOUT ME
-            </a>
-        </div>
-    
-    
-    
-</div>
-
                 
             </div>
             <footer class="footer footer-unloaded">

@@ -19,18 +19,22 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://jenqyang.github.io/index.html">
+    <meta name="description" content="这篇文章主要是对py文件里的__name__&#x3D;&#x3D;&#39;__main__&#39;的其中一个用法的演示。 源文件 1234567891011&amp;#x27;&amp;#x27;&amp;#x27;test.py&amp;#x27;&amp;#x27;&amp;#x27;print(100)def a():    print(200)if __name__ &#x3D;&#x3D; &amp;#x27;__main__&amp;#x27;:    print(300)    a()">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python import 自定义 module">
+<meta property="og:url" content="http://jenqyang.github.io/2022/07/31/Python-import-%E8%87%AA%E5%AE%9A%E4%B9%89-module/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="这篇文章主要是对py文件里的__name__&#x3D;&#x3D;&#39;__main__&#39;的其中一个用法的演示。 源文件 1234567891011&amp;#x27;&amp;#x27;&amp;#x27;test.py&amp;#x27;&amp;#x27;&amp;#x27;print(100)def a():    print(200)if __name__ &#x3D;&#x3D; &amp;#x27;__main__&amp;#x27;:    print(300)    a()">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-07-31T07:52:10.000Z">
+<meta property="article:modified_time" content="2022-07-31T10:20:27.351Z">
 <meta property="article:author" content="Jenqyang">
 <meta name="twitter:card" content="summary">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/Munch.ico">
     
-    <title>Jenqyang&#39;s Studio</title>
+    <title>Python import 自定义 module · Jenqyang&#39;s Studio</title>
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -217,10 +221,10 @@
         }
     </script>
     
-        <body class="home-body">
+        <body class="post-body">
     
         <!-- header -->
-        <header class="header header-mobile index-header">
+        <header class="header header-mobile">
     <!-- top read progress line -->
     <div class="header-element">
         <div class="read-progress"></div>
@@ -248,10 +252,21 @@
     </div>
     <!-- toggle banner for post layout -->
     
+        
+            <div class="banner">
+        
+            <div class="blog-title header-element">
+                <a href="/">Jenqyang&#39;s Studio.</a>
+            </div>
+            <div class="post-title header-element">
+                <a href="#" class="post-name">Python import 自定义 module</a>
+            </div>
+        </div>
+    
 </header>
 
         <!-- fixed footer -->
-        <footer class="footer-fixed index-footer-fixed">
+        <footer class="footer-fixed">
     <!-- back to top button -->
     <div class="footer-fixed-element">
         
@@ -281,17 +296,17 @@
     <!-- 主页  -->
     
         
-    <!-- 文章页  -->
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/wallhaven.png)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-                Jenqyang's Studio.
-            <!-- 文章页  -->
+                Python import 自定义 module
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
@@ -299,12 +314,46 @@
             <!-- 主页副标题  -->
             
                 
-                    请您批评指正
-                
-            <!-- 文章页  -->
+            <!-- 404 -->
             
         </p>
         <!-- 文章页 meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">215</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <!-- 撰写日期 -->
+                    <span class="iconfont-archer post-intro-calander">&#xe676;</span>
+                    <span class="post-intro-time">2022/07/31</span>
+                    <!-- busuanzi -->
+                    
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    
+                    <!-- 文章分享 -->
+                    <span class="share-wrapper">
+                        <span class="iconfont-archer share-icon">&#xe71d;</span>
+                        <span class="share-text">Share</span>
+                        <ul class="share-list">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -434,468 +483,80 @@
 
             <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
             <div class="container container-unloaded">
-                <main class="main index-page">
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/07/31/Python-import-%E8%87%AA%E5%AE%9A%E4%B9%89-module/">
-                
-                <span class="abstract-title-text">Python import 自定义 module</span>
-            </a>
-            <div class="abstract-content">
-                这篇文章主要是对py文件里的__name__=='__main__'的其中一个用法的演示。
-源文件
-1234567891011&#x27;&#x27;&#x27;test.py&#x27;&#x27;&#x27;print(100)def a():    print(200)if __name__ == &#x27;__main__&#x27;:    print(300)    a()    def b():        print(400)
-命令行直接执行
-1234C:\Users\888\Desktop&gt;python test.py100300200
-Python...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/07/31">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/07/31</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/04/23/%E5%A4%A9%E6%A2%AF%E8%B5%9B%E7%9C%9F%E9%A2%98L1-6-%E5%AD%97%E7%AC%A6%E4%B8%B2-python%E9%A2%98%E8%A7%A3/">
-                
-                <span class="abstract-title-text">天梯赛真题L1-6(字符串)python题解</span>
-            </a>
-            <div class="abstract-content">
-                题目
-英语老师要求学生按照如下规则写一串字母：
+                <main class="main post-page">
+    <article class="article-entry">
+        <p>这篇文章主要是对py文件里的<code>__name__=='__main__'</code>的其中一个用法的演示。</p>
+<h2 id="源文件">源文件</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">test.py</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="number">100</span>)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">a</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">200</span>)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">300</span>)</span><br><span class="line">    a()</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">b</span>():</span><br><span class="line">        <span class="built_in">print</span>(<span class="number">400</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="命令行直接执行">命令行直接执行</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\888\Desktop&gt;python test.py</span><br><span class="line">100</span><br><span class="line">300</span><br><span class="line">200</span><br></pre></td></tr></table></figure>
+<h2 id="python-交互环境执行">Python 交互环境执行</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="language-bash">&gt;&gt; import <span class="built_in">test</span></span></span><br><span class="line">100</span><br><span class="line"><span class="meta">&gt;</span><span class="language-bash">&gt;&gt; test.a()</span></span><br><span class="line">200</span><br><span class="line"><span class="meta">&gt;</span><span class="language-bash">&gt;&gt; test.b()</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">AttributeError: module &#x27;test&#x27; has no attribute &#x27;b&#x27;</span><br></pre></td></tr></table></figure>
+<h2 id="总结">总结</h2>
+<ol type="1">
+<li>当.py文件被直接运行时，<code>if __name__ == '__main__'</code>之下的代码块将被运行；当.py文件以模块形式被导入时，<code>if __name__ == '__main__'</code>之下的代码块不被运行。</li>
+<li>在<code>if __name__ == '__main__'</code>之下写函数是没有用的，无法调用，函数应该写在<code>__name__</code>之上，同理，本py文件里import其他模块的时候也是。</li>
+</ol>
 
-如果写了某个大写字母，下一个就必须写同个字母的小写，或者写字母表中下一个字母的大写；
-如果写了某个小写字母，下一个就必须写同个字母的大写，或者写字母表中前一个字母的小写；
-当然也可以什么都不写，就结束这个字母串。
-
-例如 aAaABCDdcbBC 就是一个合法的字母串；而 dEFfeFGhI 就是非法的。注意 a 没有前一个字母， Z 也没有下一个字母。
-现在面对全班学生交上来的作业，老师请你写个程序自动批改。
-限制
-代码长度限制16 KB、时间限制800 ms、内存限制64 MB
-输入格式：
-输入在第一行给出一个...
-            </div>
-            <!-- read more -->
+    </article>
+    <!-- license -->
+    
+        <div class="license-wrapper">
+            <p>Author：<a href="http://jenqyang.github.io">Jenqyang</a>
+            <p>Link：<a href="http://jenqyang.github.io/2022/07/31/Python-import-%E8%87%AA%E5%AE%9A%E4%B9%89-module/">http://jenqyang.github.io/2022/07/31/Python-import-%E8%87%AA%E5%AE%9A%E4%B9%89-module/</a>
+            <p>Publish date：<a href="http://jenqyang.github.io/2022/07/31/Python-import-%E8%87%AA%E5%AE%9A%E4%B9%89-module/">July 31st 2022, 3:52:10 pm</a>
+            <p>Update date：<a href="http://jenqyang.github.io/2022/07/31/Python-import-%E8%87%AA%E5%AE%9A%E4%B9%89-module/">July 31st 2022, 6:20:27 pm</a>
+            <p>License：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator -->
+    <ul class="post-paginator">
+        <li class="next">
             
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/04/23">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/04/23</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
+        </li>
+        <li class="previous">
             
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/04/17/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/">
-                
-                <span class="abstract-title-text">时间序列</span>
-            </a>
-            <div class="abstract-content">
-                时间序列变化形式
-
-长期趋势变动
-季节变动
-循环变动
-不规则变动
-
-模型
-
-\(T_t\)：长期趋势项
-\(S_t\)：季节变动趋势项
-\(C_t\)：循环变动趋势项
-\(R_t\)：随机干扰项
-加法模型、乘法模型、混合模型等等 \[
-y_t=f(T_t,S_t,C_t,R_t)
-\] \(y_t\)是观察目标的观察记录，均值\(E(R_t)=0\)，方差\(Var(R_t)=\sigma^2\)
-
-预测方法
-*如果在预测时间内，
-
-            </div>
-            <!-- read more -->
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2022/04/23/%E5%A4%A9%E6%A2%AF%E8%B5%9B%E7%9C%9F%E9%A2%98L1-6-%E5%AD%97%E7%AC%A6%E4%B8%B2-python%E9%A2%98%E8%A7%A3/" title="天梯赛真题L1-6(字符串)python题解">
+                    <div class="prevTitle">天梯赛真题L1-6(字符串)python题解</div>
+                </a>
             
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/04/23">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/04/17</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
+        </li>
+    </ul>
+    <!-- comment -->
     
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/04/16/Learn-HTML/">
-                
-                <span class="abstract-title-text">Learn HTML</span>
-            </a>
-            <div class="abstract-content">
-                HTML Attributes
-📌Should use quotes!!! But using single or double quotes should according to the situation.
+        <div class="post-comment">
+            <!-- 来必力 City 版安装代码 -->
 
-All HTML elements can have attributes
-The href attribute of &lt;a&gt; specifies the URL of the page the link goes to
-The src attribute of &lt;img&gt; specifies the path to the image t...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/04/16">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/04/16</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/04/08/MySQL%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">
-                
-                <span class="abstract-title-text">MySQL笔记（一）</span>
-            </a>
-            <div class="abstract-content">
-                结构化查询语言（SQL）的组成
 
-数据定义语言（Data Definition Language，DDL）：在数据库中创建、修改或删除数据库对象，如表、索引、视图、存储过程、触发器、事件等。例如：create、alter、drop、truncate等。
-数据操作语言（Data Manipulation Language，DML）：用于查询、插入、修改和删除表中的数据行等。例如：select、insert、update、delete等。
-数据控制语言（Data Control Language，DCL）：包括grant和revoke等语句。通过grant语句获得权限许可，revok...
-            </div>
-            <!-- read more -->
             
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/04/08">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/04/08</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="MySQL">MySQL</a>
-    
-</div>
 
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
             
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/04/05/%E5%9F%BA%E4%BA%8EOpenCV%E5%92%8C%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6%E5%AE%9E%E7%8E%B0/">
-                
-                <span class="abstract-title-text">基于OpenCV和树莓派的智能小车实现</span>
-            </a>
-            <div class="abstract-content">
-                
 
-            </div>
-            <!-- read more -->
             
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/04/05">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/04/05</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/03/31/PyCharm%E4%BD%BF%E7%94%A8git/">
-                
-                <span class="abstract-title-text">PyCharm使用git</span>
-            </a>
-            <div class="abstract-content">
-                
 
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/03/31">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/03/31</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/03/31/PyCharm%E4%BD%BF%E7%94%A8conda%E7%8E%AF%E5%A2%83/">
-                
-                <span class="abstract-title-text">PyCharm使用conda环境</span>
-            </a>
-            <div class="abstract-content">
-                
+            <!-- utteranc评论 -->
 
-            </div>
-            <!-- read more -->
+
+            <!-- partial('_partial/comment/changyan') -->
+            <!--PC版-->
+
+
             
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/03/31">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/03/31</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
             
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/03/12/MySQL%E7%94%9F%E6%88%90%E7%89%B9%E5%AE%9A%E5%8C%BA%E9%97%B4%E9%9A%8F%E6%9C%BA%E6%95%B4%E6%95%B0%E5%92%8C%E9%9A%8F%E6%9C%BA%E5%B0%8F%E6%95%B0/">
-                
-                <span class="abstract-title-text">MySQL生成特定区间随机整数和随机小数</span>
-            </a>
-            <div class="abstract-content">
-                RAND()生成随机数
-1SELECT RAND() AS Rand;
 
-MySQL 的RAND()函数会产生[0,1)的随机数。
-生成特定区间 [i, j] 的随机整数
-1SELECT FLOOR(i + RAND() * (j – i + 1));
-例如产生 [20, 90]区间的随机整数
-
-生成特定区间[i, j)的随机整数，并保留n位
-1SELECT ROUND((i + RAND() * (j – i)), n)
-例如产生[20, 90)区间的随机数，保留两位小数
-
-笔者认为，既然是生成随机小数，那么就不会给定闭区间，如果要生成严格闭区间的随机小数，那么...
-            </div>
-            <!-- read more -->
             
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/03/15">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/03/12</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="MySQL">MySQL</a>
-    
-</div>
 
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
+        </div>
     
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/03/07/%E8%B7%9F%E6%9D%8E%E6%B2%90%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
-                
-                <span class="abstract-title-text">跟李沐学深度学习</span>
-            </a>
-            <div class="abstract-content">
-                矩阵乘以矩阵
-\[
-C=AB\quad where\quad C_{ik}=\sum_{j}A_{ij}B_{jk}
-\]
-
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/03/15">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/03/07</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
+    <!-- timeliness note -->
+    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
     
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="DeepLearning">DeepLearning</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-    <!-- paginator  -->
-    
-        <nav class="page-nav">
-            <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">NEXT &gt;</a>
-        </nav>
+    <!-- Mathjax -->
     
 </main>
 
                 <!-- profile -->
-                
-                    <div class="profile">
-    <img class="profile-avatar" alt="avatar" src= /avatar/ava.jpg />
-    <div class="profile-name">Jenqyang</div>
-    
-        <div class="profile-signature">
-            witness me
-        </div>
-    
-    
-        <div class="profile-social">
-            
-    
-        
-            
-                <a href="mailto:jenqyang@qq.com" class="iconfont-archer email" title=email ></a>
-            
-        
-    
-        
-            
-                <a href="//github.com/Jenqyang" class="iconfont-archer github" target="_blank" title=github></a>
-            
-        
-    
-        
-            
-                <span class="iconfont-archer wechat" title=wechat>
-                    
-                    <img class="profile-qr" src="/assets/QR_code.jpg" />
-                </span>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-            
-                <a href="https://www.v2ex.com/member/Jenqyang" class="iconfont-archer v2ex" target="_blank" title=v2ex></a>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-            
-                <a href="https://www.labxing.com/profile/11256" class="iconfont-archer others" target="_blank" title=others></a>
-            
-        
-    
-        
-    
-
-
-        </div>
-    
-    
-    
-        <div class="profile-link-item">
-            <a href="/about" class="about-me">
-                
-                ABOUT ME
-            </a>
-        </div>
-    
-    
-    
-</div>
-
                 
             </div>
             <footer class="footer footer-unloaded">
@@ -990,6 +651,23 @@ C=AB\quad where\quad C_{ik}=\sum_{j}A_{ij}B_{jk}
 
         </div>
         <!-- toc -->
+        
+            <div class="toc-wrapper toc-wrapper-loding" style=
+
+
+
+
+
+
+
+    top:50vh;
+
+>
+                <div class="toc-catalog">
+                    <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+                </div>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%90%E6%96%87%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">源文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9B%B4%E6%8E%A5%E6%89%A7%E8%A1%8C"><span class="toc-number">2.</span> <span class="toc-text">命令行直接执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python-%E4%BA%A4%E4%BA%92%E7%8E%AF%E5%A2%83%E6%89%A7%E8%A1%8C"><span class="toc-number">3.</span> <span class="toc-text">Python 交互环境执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+            </div>
         
         <!-- sidebar -->
         <div class="sidebar sidebar-hide">
@@ -1268,6 +946,8 @@ C=AB\quad where\quad C_{ik}=\sum_{j}A_{ij}B_{jk}
         <!-- CNZZ -->
         
         <!-- async load share.js -->
+        
+            <script src="/scripts/share.js?v=20211217" async></script>
         
         <!-- mermaid -->
         
