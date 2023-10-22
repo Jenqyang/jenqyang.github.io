@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+
+  
+  <title>Chatglm2-6B医疗领域微调实战</title>
+  
+  <link rel="canonical" href="https://jenqyang.github.io/2023/10/22/Chatglm2-6B%E5%8C%BB%E7%96%97%E9%A2%86%E5%9F%9F%E5%BE%AE%E8%B0%83%E5%AE%9E%E6%88%98/">
+  
+  <meta name="description" content="10月中旬，赶着天池的一场中文医疗大模型比赛的尾巴，使用Chatglm2-6B进行了医疗领域的微调尝试，这里就稍稍讲解一下这场比赛以及对Chatglm2-6B使用PT方法进行微调的感悟。 比赛介绍为推动LLM在医疗领域的发展和落地，将CBLUE基准进行二次开发，将18种不同的医疗场景NLP任务全部转">
+  
+  
+  <meta name="author" content="jenqyang">
+  
+  <meta property="og:image" content="https://jenqyang.github.ioundefined">
+  
+  <meta property="og:site_name" content="Zhengyang Hou" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Chatglm2-6B医疗领域微调实战" />
+  
+  <meta property="og:description" content="10月中旬，赶着天池的一场中文医疗大模型比赛的尾巴，使用Chatglm2-6B进行了医疗领域的微调尝试，这里就稍稍讲解一下这场比赛以及对Chatglm2-6B使用PT方法进行微调的感悟。 比赛介绍为推动LLM在医疗领域的发展和落地，将CBLUE基准进行二次开发，将18种不同的医疗场景NLP任务全部转">
+  
+  <meta property="og:url" content="https://jenqyang.github.io/2023/10/22/Chatglm2-6B%E5%8C%BB%E7%96%97%E9%A2%86%E5%9F%9F%E5%BE%AE%E8%B0%83%E5%AE%9E%E6%88%98/" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Chatglm2-6B医疗领域微调实战">
+  
+  <meta name="twitter:description" content="10月中旬，赶着天池的一场中文医疗大模型比赛的尾巴，使用Chatglm2-6B进行了医疗领域的微调尝试，这里就稍稍讲解一下这场比赛以及对Chatglm2-6B使用PT方法进行微调的感悟。 比赛介绍为推动LLM在医疗领域的发展和落地，将CBLUE基准进行二次开发，将18种不同的医疗场景NLP任务全部转">
+  
+  
+  <meta name="twitter:image" content="https://jenqyang.github.ioundefined">
+  
+  <meta name="twitter:url" content="https://jenqyang.github.io/2023/10/22/Chatglm2-6B%E5%8C%BB%E7%96%97%E9%A2%86%E5%9F%9F%E5%BE%AE%E8%B0%83%E5%AE%9E%E6%88%98/" />
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="../fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/prism-dark.css">
+
+  
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+
+  <!-- User css -->
+  
+  
+<link rel="stylesheet" href="/css/user.css">
+
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/kawaii.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #0FA0CE;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0FA0CE 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #0FA0CE;
+  }
+  .nanobar .bar {
+    background: #0FA0CE;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #0FA0CE;
+    border-color: #0FA0CE;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #0FA0CE;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🌑</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>☀️</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
+  </div>
+
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      Jenqyang
+    </h1>
+  </div>
+
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+        
+          
+            <a href="mailto:jenqyanghou@gmail.com" target="_blank" class="ml">Email</a>
+          
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
+
+        <div class="trans">
+            <h2>Chatglm2-6B医疗领域微调实战</h2>
+
+  <p>10月中旬，赶着天池的一场<a target="_blank" rel="noopener" href="https://tianchi.aliyun.com/competition/entrance/532132/introduction?spm=a2c22.12281925.0.0.7ad07137pEEbl6">中文医疗大模型比赛</a>的尾巴，使用Chatglm2-6B进行了医疗领域的微调尝试，这里就稍稍讲解一下这场比赛以及对Chatglm2-6B使用PT方法进行微调的感悟。</p>
+<h3 id="比赛介绍"><a href="#比赛介绍" class="headerlink" title="比赛介绍"></a>比赛介绍</h3><p>为推动LLM在医疗领域的发展和落地，将CBLUE基准进行二次开发，将18种不同的医疗场景NLP任务全部转化为基于提示的语言生成任务，形成首个中文医疗场景的LLM评测基准——PromptCBLUE。为了考察大模型领域的不同技术，对PromptCBLUE评测开放两个榜单：不微调和参数高效微调赛道（以下内容都是着眼于参数高效微调赛道）。</p>
+<h3 id="比赛规则"><a href="#比赛规则" class="headerlink" title="比赛规则"></a>比赛规则</h3><ol>
+<li>选手可以在开源的大模型主干之上添加参数高效微调模块(添加的额外参数量不得高于大模型主干参数量的1%), 且只能微调参数高效微调模块，不得微调大模型主干，且只能使用一组参数高效微调模块完成所有的任务。</li>
+<li>选手可以通过扩展提示内容或者从训练集中选择示例等方式来增强模型表现，但不能更改或者删减指令的内容。</li>
+<li>选手不能将LLM多次生成的结果进行集成(类似于self-consistency的方法)，提交的每个测试样本预测结果必须是LLM单次回复生成的。</li>
+</ol>
+<h3 id="数据集介绍"><a href="#数据集介绍" class="headerlink" title="数据集介绍"></a>数据集介绍</h3><pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+        <span class="token property">"input"</span><span class="token operator">:</span>  str<span class="token punctuation">,</span>
+        <span class="token property">"target"</span><span class="token operator">:</span>  str<span class="token punctuation">,</span>
+        <span class="token property">"type"</span><span class="token operator">:</span>  str<span class="token punctuation">,</span>
+        <span class="token property">"answer_choices"</span><span class="token operator">:</span>  str<span class="token punctuation">,</span>
+        <span class="token property">"sample_id"</span><span class="token operator">:</span>  str<span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>input字段字符串是LLM模型的输入，target字段也是一个字符串，则是LLM模型需要生成的文本序列。其他附加信息有： type是原任务类型(不能作为模型输入)，answer_choices字段是选项，只有分类、术语标准化、推理类任务上该字段才会有实际取值，sample_id是样本编号。这些附加信息是不作为LLM的输入。</p>
+<h3 id="P-Tuning-v2-微调"><a href="#P-Tuning-v2-微调" class="headerlink" title="P-Tuning v2 微调"></a>P-Tuning v2 微调</h3><p>P-tuning v2微调方法是一种基于参数调整的微调方法，其主要思想是通过调整预训练模型的参数来提高模型的表现。这种方法将预训练模型的参数分成两个部分：固定参数和可调整参数。在微调过程中，可调整参数会根据任务数据进行调整，而固定参数则保持不变。这种方法能够提高模型的泛化性能，同时避免了过拟合问题。</p>
+<p>在该项任务中进行如下的参数设置：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">PRE_SEQ_LEN</span><span class="token operator">=</span><span class="token number">128</span> <span class="token comment"># soft prompt 长度</span>
+<span class="token assign-left variable">LR</span><span class="token operator">=</span>1e-2 <span class="token comment"># 学习率</span>
+<span class="token assign-left variable">NUM_GPUS</span><span class="token operator">=</span><span class="token number">1</span> <span class="token comment"># GPU个数，因为我是单卡所以设置1</span>
+
+torchrun <span class="token parameter variable">--standalone</span> <span class="token parameter variable">--nnodes</span><span class="token operator">=</span><span class="token number">1</span> --nproc-per-node<span class="token operator">=</span><span class="token variable">$NUM_GPUS</span> main.py <span class="token punctuation">\</span>
+    <span class="token parameter variable">--do_train</span> <span class="token punctuation">\</span>
+    <span class="token parameter variable">--train_file</span> PromptCBLUE/train.json <span class="token punctuation">\</span>  <span class="token comment"># 训练集json文件路径，json-line格式</span>
+    <span class="token parameter variable">--validation_file</span> PromptCBLUE/dev.json <span class="token punctuation">\</span>  <span class="token comment"># 验证集json文件路径，json-line格式</span>
+    <span class="token parameter variable">--preprocessing_num_workers</span> <span class="token number">10</span> <span class="token punctuation">\</span>
+    <span class="token parameter variable">--prompt_column</span> input <span class="token punctuation">\</span>     <span class="token comment"># json中作为LLM输入的key</span>
+    <span class="token parameter variable">--response_column</span> target <span class="token punctuation">\</span>   <span class="token comment"># json中作为LLM输出的key</span>
+    <span class="token parameter variable">--overwrite_cache</span> <span class="token punctuation">\</span>
+    <span class="token parameter variable">--model_name_or_path</span> /root/autodl-tmp/chatglm2-6b <span class="token punctuation">\</span>   <span class="token comment"># 预训练模型名称或路径</span>
+    <span class="token parameter variable">--output_dir</span> output/adgen-chatglm2-6b-pt-<span class="token variable">$PRE_SEQ_LEN</span>-<span class="token variable">$LR</span> <span class="token punctuation">\</span>  <span class="token comment"># 输出目录，用于保存模型和日志等文件</span>
+    <span class="token parameter variable">--overwrite_output_dir</span> <span class="token punctuation">\</span>
+    <span class="token parameter variable">--max_source_length</span> <span class="token number">64</span> <span class="token punctuation">\</span>   <span class="token comment"># 输入文本的最大长度，单位是token</span>
+    <span class="token parameter variable">--max_target_length</span> <span class="token number">128</span> <span class="token punctuation">\</span>  <span class="token comment"># 输出文本的最大长度，单位是token</span>
+    <span class="token parameter variable">--per_device_train_batch_size</span> <span class="token number">32</span> <span class="token punctuation">\</span>  <span class="token comment"># 每个设备的训练批处理大小</span>
+    <span class="token parameter variable">--per_device_eval_batch_size</span> <span class="token number">1</span> <span class="token punctuation">\</span>  <span class="token comment"># 每个设备的评估批处理大小</span>
+    <span class="token parameter variable">--gradient_accumulation_steps</span> <span class="token number">1</span> <span class="token punctuation">\</span>  <span class="token comment"># 梯度累积次数</span>
+    <span class="token parameter variable">--predict_with_generate</span> <span class="token punctuation">\</span>  <span class="token comment"># 是否使用生成模式进行预测</span>
+    <span class="token parameter variable">--max_steps</span> <span class="token number">1000</span> <span class="token punctuation">\</span>  <span class="token comment"># 表示最大训练步数，即模型在训练集上的迭代次数，可以理解为训练多少轮</span>
+    <span class="token parameter variable">--logging_steps</span> <span class="token number">10</span> <span class="token punctuation">\</span>  <span class="token comment"># 日志记录间隔（命令行loss、lr、epoch信息输出间隔）</span>
+    <span class="token parameter variable">--save_steps</span> <span class="token number">200</span> <span class="token punctuation">\</span>  <span class="token comment"># 保存模型的步数间隔，即训练多少轮保存一次训练结果（checkpoint）</span>
+    <span class="token parameter variable">--learning_rate</span> <span class="token variable">$LR</span> <span class="token punctuation">\</span>
+    <span class="token parameter variable">--pre_seq_len</span> <span class="token variable">$PRE_SEQ_LEN</span> <span class="token punctuation">\</span>
+    <span class="token comment"># --quantization_bit # 量化等级，用于降低显存需求，由于使用32G的V100所以无需量化</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>参数讲解：</p>
+<ol>
+<li><code>max_source_length</code>和<code>max_target_length</code>的最大长度是影响模型处理能力的重要参数，一般建议根据任务和数据集的特点选择合适的值，但不要超过ChatGLM-6B的序列长度限制（2048）。</li>
+<li><code>per_device_train_batch_size</code>是每个设备上的训练批处理大小，即每个GPU&#x2F;TPU内核&#x2F;CPU上用于训练的数据量。这个参数会影响显存的占用和训练的速度。一般来说，批次大小越大，显存占用越高，训练速度越快。</li>
+<li><code>gradient_accumulation_steps</code>是指梯度累积的次数，即在进行一次梯度更新之前，需要累积多少个小批量的梯度。这个参数可以用来解决显存不足的问题。通过减小每个小批量的大小，增加梯度累积的次数，来保持总的有效批量大小不变。</li>
+<li><code>gradient_accumulation_steps</code>和<code>per_device_train_batch_size</code>的关系是：它们都可以影响训练过程中的有效批次大小。有效批次大小是指每次梯度更新时使用的数据量，等于$per_device_train_batch_size\times gradient_accumulation_steps\times NUM_GPUS$。有效批次大小会影响模型的训练速度和效果，一般来说，有效批次大小越大，训练速度越快，但是也可能导致梯度爆炸或者欠拟合。</li>
+</ol>
+<h3 id="模型表现"><a href="#模型表现" class="headerlink" title="模型表现"></a>模型表现</h3><p>命令行执行<code>bash train.sh</code>，显存占用大约28GB（V100-32GB）。</p>
+<p>例子1：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> display_answer<span class="token punctuation">(</span>model<span class="token punctuation">,</span> <span class="token string">"下面的搜索词和页面标签的意思有多相同？\n搜索词：冬季上火了吃什么降火\n页面标签：宝宝上火吃什么药降火\n选项：完全不匹配或者没有参考价值，很少匹配有一些参考价值，部分匹配，完全匹配"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 微调前</span>
+搜索词和页面标签的意思存在一定的相似性，都涉及到宝宝上火的问题，但表达方式和侧重点略有不同。
+搜索词“冬季上火了吃什么降火”主要关注冬季宝宝上火时应该吃哪些食物来降火，强调的是在冬季这个特定的季节背景下，提供相应的食物建议。
+页面标签“宝宝上火吃什么药降火”则更侧重于提供宝宝上火的药物推荐，帮助家长采取相应的药物治疗措施。
+虽然这两个搜索词和页面标签都涉及到宝宝上火的问题，但表达方式和侧重点不同，搜索词更注重食物推荐，而页面标签更注重药物推荐。
+
+<span class="token comment"># 微调后</span>
+完全匹配<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>例子2：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> display_answer<span class="token punctuation">(</span>model<span class="token punctuation">,</span> <span class="token string">"请问说话人在最后一句话中表达的意图是什么？\n问诊对话历史：\n医生：n你为什么觉得和你的吻呢，这些多重要啊，\n患者：听不清啊\n医生：小孩现在十娘说啥，你是为什么感觉他和露露吧，\n患者：就是听着感觉像什么东西堵着喉咙\n可选意图：关于病因的询问，关于症状的回答，关于病因的回答，关于注意事项的提问，关于用药建议的提问，关于已有检查和治疗的提问，关于个人基本信息的询问，关于用药建议的解答"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 微调前</span>
+关于病因的询问。
+
+<span class="token comment"># 微调后</span>
+关于病因的询问<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>例子3：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> display_answer<span class="token punctuation">(</span>model<span class="token punctuation">,</span> <span class="token string">"现在假定你是一名医生。有如下对话历史：\n患者：肠胃不好，胃有点胀，经常放屁。（男，22岁）\n医生：你好，这种情况多久了\n根据上述对话历史，给出你的回复"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 微调前</span>
+医生<span class="token punctuation">:</span>你好，你最近感到肠胃不适，包括胃胀和放屁吗？
+
+<span class="token comment"># 微调后</span>
+这种情况持续了一段时间。一般肠胃不好引起的胀气，建议你注意饮食，多喝水，多吃蔬菜水果，不要吃辛辣油腻的食物。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>例子4：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> display_answer<span class="token punctuation">(</span>model<span class="token punctuation">,</span> <span class="token string">"根据医患对话内容判断临床发现实体的阴阳性情况：\n患者：拍了甲状腺的彩超，请医生帮忙看看\n医生：你好，能把彩超报告发过来吗？\n患者：可以的谢谢医生\n患者：图片因隐私问题无法显示\n患者：能看清楚吗\n医生：彩超结果问题不大，查过甲功吗\n患者：结节严重不\n患者：甲功查过了。也有检验单，貌似不好。\n医生：把甲功的单子发过来\n患者：稍等\n医生：好的\n患者：图片因隐私问题无法显示\n患者：9月底做的\n医生：用药了吗\n患者：这个单子可以看出我是什么问题吗\n患者：用药了。这个月了吧。\n患者：但是中间有间断过\n医生：有问题\n医生：用的什么药\n患者：是什么问题\n患者：我想全面的找您了解下，多看几个医生这样确诊些\n医生：甲亢\n医生：需要规范治疗\n患者：我开始吃的是甲硫，有起疹子，换成了丙硫\n医生：可以，继续吃吧，定期复查甲功\n患者：我想问下，甲亢治疗只有这两种药吗？还有其他的吗\n医生：这药效果好\n患者：丙硫氧嘧定可以是吧\n医生：必须在内分泌科医生知道下用药\n患者：我现在复查的结果是t3t4正常了，tsh还是低\n医生：可以\n医生：低问题不大\n医生：高了不行\n患者：也就是说我现在甲亢也只能吃这个药，不管去哪个医院医生基本都是开这个药对吧\n医生：是的\n患者：图片因隐私问题无法显示\n患者：这个是本月复查的检验单\n患者：您帮忙看看\n医生：这个结果还行\n患者：还行？\n患者：可是有一项值低啊，这个有影响吗\n医生：tsh低问题问题不大\n患者：一般要服药多久能正常呢\n患者：我两次复查的结果是第二次的t3t4值比第一次下降了一些，但还在正常范围内，有问题吗\n医生：就是有效果，控制住啦，逐渐减量\n该对话中涉及的临床发现实体包括：起疹子，甲亢\n请在以下阴阳性选项中做出判定：阳性，阴性，其他，不标注\n解释：临床发现实体用于描述患者的医学表现。对阴阳性标签说明如下：“阳性”是指已有症状疾病或者假设未来可能发生的疾病等；“阴性”是指未患有症状疾病，“不标注”是指无实际意义的不标注或者和病人当前的状态独立不标注，“其他”指没有回答、不知道、回答不明确或者模棱两可不好推断"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 微调前</span>
+根据医患对话内容<span class="token punctuation">,</span>可以判断出该对话中涉及的临床发现实体包括起疹子和甲亢<span class="token punctuation">,</span>因此选项应为阳性。
+
+<span class="token comment"># 微调后</span>
+阳性<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>例子5：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> display_answer<span class="token punctuation">(</span>model<span class="token punctuation">,</span> <span class="token string">"在给定的ICD-10诊断标准词中，找出与原诊断描述匹配的归一词：\n原诊断描述：浸润性低分化鳞癌\n可供选择的ICD-10诊断标准词：非浸润性粉刺癌，假腺样鳞状细胞癌，浸润性小管性癌，浸润性导管癌和管状癌，浸润性小叶癌，非浸润性导管内乳头状腺癌，硬化性浸润性基底细胞癌，浸润性导管癌和粘液癌，浸润性导管腺癌，多形性低度腺癌，浸润性乳头状腺癌，弥漫性低分化淋巴细胞性恶性淋巴瘤，高分化胸腺癌，非浸润性小叶癌，浸润性微乳头状癌，硬化性肝癌，鳞状细胞癌，鳞状细胞原位癌，基底样鳞状细胞癌，鳞状毛囊角化病，浸润性导管癌合并其他型癌，非浸润性囊内癌，乳头状鳞状细胞癌\n请填写与原诊断描述匹配的归一词："</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 微调前</span>
+非浸润性粉刺癌（非浸润性鳞癌）
+
+<span class="token comment"># 微调后</span>
+鳞状细胞癌<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>例子6：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> display_answer<span class="token punctuation">(</span>model<span class="token punctuation">,</span> <span class="token string">"句子A：标题，如：乙肝小三阳吃什么药\n句子B：治疗乙肝小三阳吃什么药\n这两句话表达的医学意思相同吗？\n选项：相同，不同\n答："</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 微调前</span>
+这两句话表达的医学意思不同。
+句子A是一个疑问句<span class="token punctuation">,</span>询问乙肝小三阳患者应该吃什么药。句子B是一个陈述句<span class="token punctuation">,</span>指出乙肝小三阳患者应该吃治疗乙肝小三阳的药物。
+
+<span class="token comment"># 微调后</span>
+相同<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>从以上例子可以看出，微调后的模型回答更加简洁（例子1、4），前后文联系也更有逻辑性（例子3），同时在医疗领域的问答更加合理，有明显的准确率提升（例子5、6）。总之，使用P-Tuning方法微调ChatGLM能够提高在垂直领域的表现，不容易出现模型变笨的现象（因为模型整体参数变化很小），既能够保持原模型的“智力”，又能够提高在某个领域的专业能力。</p>
+
+  <p> — Oct 22, 2023</p>
+  
+
+
+          <div class="row mt-2">
+  
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
+        </a>
+        
+        at <a href="https://en.wikipedia.org/wiki/Earth" target="_blank" rel="noreferrer">Earth</a>.</p>
+        
+    </div>
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+      <a class="ml-0 footer-link icon" href="https://github.com/Jenqyang" target="_blank" style="text-decoration: none" rel="noreferrer" aria-label="GitHub">
+        <svg class="github svg-hov" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
+</div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>
