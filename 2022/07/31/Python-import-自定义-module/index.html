@@ -11,34 +11,34 @@
   <meta charset="utf-8">
 
   
-  <title>All Posts - jenqyang</title>
+  <title>Python import 自定义 module</title>
   
-  <link rel="canonical" href="https://jenqyang.github.io/archives/">
+  <link rel="canonical" href="https://jenqyang.github.io/2022/07/31/Python-import-%E8%87%AA%E5%AE%9A%E4%B9%89-module/">
   
-  <meta name="description" content="">
+  <meta name="description" content="这篇文章主要是对py文件里的__name__==&amp;#39;__main__&amp;#39;的其中一个用法的演示。 源文件&#39;&#39;&#39; test.py &#39;&#39;&#39; print(100) def a():     print(200) if __name__ == &#39;__main__&#39;:     print(300) ">
   
   
   <meta name="author" content="jenqyang">
   
-  <meta property="og:image" content="https://jenqyang.github.io/images/me.jpg">
+  <meta property="og:image" content="https://jenqyang.github.ioundefined">
   
   <meta property="og:site_name" content="Zhengyang Hou" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="All Posts - jenqyang" />
+  <meta property="og:title" content="Python import 自定义 module" />
   
-  <meta property="og:description" content="">
+  <meta property="og:description" content="这篇文章主要是对py文件里的__name__==&amp;#39;__main__&amp;#39;的其中一个用法的演示。 源文件&#39;&#39;&#39; test.py &#39;&#39;&#39; print(100) def a():     print(200) if __name__ == &#39;__main__&#39;:     print(300) ">
   
-  <meta property="og:url" content="https://jenqyang.github.io/archives/" />
+  <meta property="og:url" content="https://jenqyang.github.io/2022/07/31/Python-import-%E8%87%AA%E5%AE%9A%E4%B9%89-module/" />
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="All Posts - jenqyang">
+  <meta name="twitter:title" content="Python import 自定义 module">
   
-  <meta name="twitter:description" content="">
+  <meta name="twitter:description" content="这篇文章主要是对py文件里的__name__==&amp;#39;__main__&amp;#39;的其中一个用法的演示。 源文件&#39;&#39;&#39; test.py &#39;&#39;&#39; print(100) def a():     print(200) if __name__ == &#39;__main__&#39;:     print(300) ">
   
   
-  <meta name="twitter:image" content="https://jenqyang.github.io/images/me.jpg">
+  <meta name="twitter:image" content="https://jenqyang.github.ioundefined">
   
-  <meta name="twitter:url" content="https://jenqyang.github.io/archives/" />
+  <meta name="twitter:url" content="https://jenqyang.github.io/2022/07/31/Python-import-%E8%87%AA%E5%AE%9A%E4%B9%89-module/" />
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -181,176 +181,42 @@
 </div>
 
         <div class="trans">
-          
-<h2>All Posts</h2>
+            <h2>Python import 自定义 module</h2>
 
+  <p>这篇文章主要是对py文件里的<code>__name__==&#39;__main__&#39;</code>的其中一个用法的演示。</p>
+<h3 id="源文件"><a href="#源文件" class="headerlink" title="源文件"></a>源文件</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token triple-quoted-string string">'''
+test.py
+'''</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token number">300</span><span class="token punctuation">)</span>
+    a<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token number">400</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-    <article>
-      <div class="row">
+<h3 id="命令行直接执行"><a href="#命令行直接执行" class="headerlink" title="命令行直接执行"></a>命令行直接执行</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">C:<span class="token punctuation">\</span>Users<span class="token punctuation">\</span><span class="token number">888</span><span class="token punctuation">\</span>Desktop<span class="token operator">></span>python test.py
+<span class="token number">100</span>
+<span class="token number">300</span>
+<span class="token number">200</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-        <div class="three columns left lit">
-          <p class="bottom">Oct 22, 2023</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2023/10/22/Chatglm2-6B%E5%8C%BB%E7%96%97%E9%A2%86%E5%9F%9F%E5%BE%AE%E8%B0%83%E5%AE%9E%E6%88%98/" class="">
-            
-              Chatglm2-6B医疗领域微调实战
-            
-          </a>
-        </div>
-      </div>
-    </article>
+<h3 id="Python-交互环境执行"><a href="#Python-交互环境执行" class="headerlink" title="Python 交互环境执行"></a>Python 交互环境执行</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">>></span><span class="token operator">></span> <span class="token function">import</span> <span class="token builtin class-name">test</span>
+<span class="token number">100</span>
+<span class="token operator">>></span><span class="token operator">></span> test.a<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token number">200</span>
+<span class="token operator">>></span><span class="token operator">></span> test.b<span class="token punctuation">(</span><span class="token punctuation">)</span>
+Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span>:
+  File <span class="token string">"&lt;stdin>"</span>, line <span class="token number">1</span>, <span class="token keyword">in</span> <span class="token operator">&lt;</span>module<span class="token operator">></span>
+AttributeError: module <span class="token string">'test'</span> has no attribute <span class="token string">'b'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-    <article>
-      <div class="row">
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>当.py文件被直接运行时，<code>if __name__ == &#39;__main__&#39;</code>之下的代码块将被运行；当.py文件以模块形式被导入时，<code>if __name__ == &#39;__main__&#39;</code>之下的代码块不被运行。</li>
+<li>在<code>if __name__ == &#39;__main__&#39;</code>之下写函数是没有用的，无法调用，函数应该写在<code>__name__</code>之上，同理，本py文件里import其他模块的时候也是。</li>
+</ol>
 
-        <div class="three columns left lit">
-          <p class="bottom">Jan 31, 2023</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2023/01/31/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%9B%9B%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%89%EF%BC%89/" class="">
-            
-              数学建模四大模型总结（三）
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">Jan 31, 2023</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2023/01/31/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%9B%9B%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89/" class="">
-            
-              数学建模四大模型总结（二）
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">Jan 31, 2023</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2023/01/31/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%9B%9B%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/" class="">
-            
-              数学建模四大模型总结（一）
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">Jan 25, 2023</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2023/01/25/Pytorch%E7%BD%91%E7%BB%9C%E5%8F%AF%E8%A7%86%E5%8C%96%E6%96%B9%E5%BC%8F/" class="">
-            
-              Pytorch网络可视化方式
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">Sep 26, 2022</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2022/09/26/%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83-%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0%E6%A6%82%E5%BF%B5%E8%BE%A8%E6%9E%90/" class="">
-            
-              概率分布-分布函数概念辨析
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">Jul 31, 2022</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2022/07/31/Python-import-%E8%87%AA%E5%AE%9A%E4%B9%89-module/" class="">
-            
-              Python import 自定义 module
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">Apr 23, 2022</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2022/04/23/%E5%A4%A9%E6%A2%AF%E8%B5%9B%E7%9C%9F%E9%A2%98L1-6-%E5%AD%97%E7%AC%A6%E4%B8%B2-python%E9%A2%98%E8%A7%A3/" class="">
-            
-              天梯赛真题L1-6(字符串)python题解
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">Apr 16, 2022</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2022/04/16/Learn-HTML/" class="">
-            
-              Learn HTML
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">Apr 1, 2022</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2022/04/01/hello-world/" class="">
-            
-              Hello World
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-<div class="pagination-bar">
-  <ul class="pagination">
-    
-    
-  </ul>
-</div>
+  <p><a class="classtest-link" href="/tags/Python/" rel="tag">Python</a> — Jul 31, 2022</p>
+  
 
 
           <div class="row mt-2">

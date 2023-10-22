@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+
+  
+  <title>数学建模四大模型总结（二）</title>
+  
+  <link rel="canonical" href="https://jenqyang.github.io/2023/01/31/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%9B%9B%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89/">
+  
+  <meta name="description" content="四大类题型预测类指的是通过分析已有的数据或者现象，找出其内在发展规律，然后对未来情形做出预测的过程。根据已知条件和求解目的，往往将预测类问题分为：小样本内部预测，大样本内部预测，小样本未来预测，大样本随机因素或周期特征的未来预测，大样本的未来预测。（分析：预测问题主要是以某个小问的形式出现，很少有整">
+  
+  
+  <meta name="author" content="jenqyang">
+  
+  <meta property="og:image" content="https://jenqyang.github.ioundefined">
+  
+  <meta property="og:site_name" content="Zhengyang Hou" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="数学建模四大模型总结（二）" />
+  
+  <meta property="og:description" content="四大类题型预测类指的是通过分析已有的数据或者现象，找出其内在发展规律，然后对未来情形做出预测的过程。根据已知条件和求解目的，往往将预测类问题分为：小样本内部预测，大样本内部预测，小样本未来预测，大样本随机因素或周期特征的未来预测，大样本的未来预测。（分析：预测问题主要是以某个小问的形式出现，很少有整">
+  
+  <meta property="og:url" content="https://jenqyang.github.io/2023/01/31/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%9B%9B%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89/" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="数学建模四大模型总结（二）">
+  
+  <meta name="twitter:description" content="四大类题型预测类指的是通过分析已有的数据或者现象，找出其内在发展规律，然后对未来情形做出预测的过程。根据已知条件和求解目的，往往将预测类问题分为：小样本内部预测，大样本内部预测，小样本未来预测，大样本随机因素或周期特征的未来预测，大样本的未来预测。（分析：预测问题主要是以某个小问的形式出现，很少有整">
+  
+  
+  <meta name="twitter:image" content="https://jenqyang.github.ioundefined">
+  
+  <meta name="twitter:url" content="https://jenqyang.github.io/2023/01/31/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%9B%9B%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89/" />
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="../fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/prism-dark.css">
+
+  
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+
+  <!-- User css -->
+  
+  
+<link rel="stylesheet" href="/css/user.css">
+
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/kawaii.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #0FA0CE;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0FA0CE 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #0FA0CE;
+  }
+  .nanobar .bar {
+    background: #0FA0CE;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #0FA0CE;
+    border-color: #0FA0CE;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #0FA0CE;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🌑</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>☀️</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
+  </div>
+
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      Jenqyang
+    </h1>
+  </div>
+
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+        
+          
+            <a href="mailto:jenqyanghou@gmail.com" target="_blank" class="ml">Email</a>
+          
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
+
+        <div class="trans">
+            <h2>数学建模四大模型总结（二）</h2>
+
+  <h2 id="四大类题型"><a href="#四大类题型" class="headerlink" title="四大类题型"></a>四大类题型</h2><h3 id="预测类"><a href="#预测类" class="headerlink" title="预测类"></a>预测类</h3><p>指的是通过分析已有的数据或者现象，找出其内在发展规律，然后对未来情形做出预测的过程。<br>根据已知条件和求解目的，往往将预测类问题分为：<br>小样本内部预测，大样本内部预测，小样本未来预测，大样本随机因素或周期特征的未来预测，大样本的未来预测。<br>（分析：预测问题主要是以某个小问的形式出现，很少有整个赛题所有小问全是预测要求的，但是也建议认真对待）</p>
+<h3 id="评价类"><a href="#评价类" class="headerlink" title="评价类"></a>评价类</h3><p>每个行业都有它的评价标准和准则，那么这些标准应该有其自身的形成机制，数学模型就是形成这一机制的方法.<br>如何根据成分指标评价一瓶葡萄酒？如何根据员工表现评价年终奖评定？如何评价一名NBA球员在球场上的效率？这些问题都需要设计评价算法来对这些对象进行评价。<br>保证最后的评价结果最能反映对象的需求同时与标准结果的比较差别最小<br>（分析：解决评价类赛题的关键是指标体系的构建，构建完评价体系后在选择合适的评价方法即可，体系建立应秉承全面，准确，独立的三要素）</p>
+<h3 id="机理分析类赛题"><a href="#机理分析类赛题" class="headerlink" title="机理分析类赛题"></a>机理分析类赛题</h3><p>所机理分析是根据对现实对象特性的认识，分析其因果关系，找出反映内部机理的规律。在求解机理分析类问题时首先需要探寻与问题相关的物理，化学，经济等相关的知识，然后通过对已知数据或现象的分析对事物的内在规律做出必要的假设，最后通过构建合适的方程或关系式对其内在规律进行数值表达。<br>（分析：机理分析立足于建立事物内部的规律，相对于其他类型的赛题均有章可循，机理分析类赛题往往需要结合众多关联知识才可以进行求解，如空气动力学，流体力学，热力学等）</p>
+<h3 id="优化类"><a href="#优化类" class="headerlink" title="优化类"></a>优化类</h3><p>指在现有现有条件固定的情况下，如何使目标效果达到最佳。如在一座城市公交车公司拥有的公交车数量是固定的，问如何安排线路能够使盈利达到最高。优化类问题往往需要分析三个关键因素：目标函数，决策变量和约束条件，三者往往缺一不可。<br>（分析：解决优化类赛题必须知道优化的目的，约束的条件和所求解的关键变量，需要有较强的编程能力和赛题分析挖掘能力）</p>
+<h2 id="数学建模算法"><a href="#数学建模算法" class="headerlink" title="数学建模算法"></a>数学建模算法</h2><p><img src="https://s2.loli.net/2023/01/31/5eFuI14K7lUohwA.png"></p>
+<p><img src="https://s2.loli.net/2023/01/31/VwyekTgpmFY49vs.png"></p>
+<p><img src="https://s2.loli.net/2023/01/31/Ejhg3UJX8R7Q4mB.png"></p>
+<h2 id="优化类问题"><a href="#优化类问题" class="headerlink" title="优化类问题"></a>优化类问题</h2><h3 id="数学规划模型"><a href="#数学规划模型" class="headerlink" title="数学规划模型"></a>数学规划模型</h3><p>适用情况：要求一些变量有限制后，某一个变量或结果最大或最小，一般是最值问题，包括：线性规划、整数线性规划、非线性规划、多目标规划、动态规划。</p>
+<ol>
+<li>线性规划模型：目标函数和约束条件都是线性函数的数学规划模型；</li>
+<li>整数规划模型：决策变量要求取整数值的线性规划模型；</li>
+<li>非线性规划模型：目标函数或者约束条件中有非线性函数的数学规划模型；</li>
+<li>多目标规划模型：具有多个目标函数的数学规划模型</li>
+</ol>
+<h3 id="微分方程组模型"><a href="#微分方程组模型" class="headerlink" title="微分方程组模型"></a>微分方程组模型</h3><p>经常适用于人口预测，求最值极值点则为优化的目标</p>
+<h3 id="图论算法"><a href="#图论算法" class="headerlink" title="图论算法"></a>图论算法</h3><p>最短路径问题、网络最大流问题、最小费用最大流问题、最小生成树问题(MST)、旅行商问题(TSP)、图的着色问题</p>
+<h2 id="评价类问题"><a href="#评价类问题" class="headerlink" title="评价类问题"></a>评价类问题</h2><h3 id="层次分析法"><a href="#层次分析法" class="headerlink" title="层次分析法"></a>层次分析法</h3><p>是最基本的评价问题分析方法，能够求出某个因素的权重。以看出指标的影响力。有权重，用层次分析，分析指标<br>主观性比较强，要自己定指标，所以一般是辅助问题。</p>
+<h3 id="TOPSIS法"><a href="#TOPSIS法" class="headerlink" title="TOPSIS法"></a>TOPSIS法</h3><p>TOPSIS法根据有限个评价对象与理想化目标的接近程度进行排序的方法，是在现有的对象中进行相对优劣的评价。<br>可以加入熵权法分析权重</p>
+<h3 id="主成分分析"><a href="#主成分分析" class="headerlink" title="主成分分析"></a>主成分分析</h3><p>在实际问题中，研究多指标(变量)问题是经常遇到的，然而在多数情况下，不同指标之间是有一定相关性。由于指标较多并且指标之间有一定的相关性，势必增加了分析问题的复杂性。<br>数据降维，方便计算，指标太多，减少点<br>主成分分析就是设法将原来众多具有一定相关性的指标(比如p个指标)，重新组合成一组新的相互无关的综合指标来代替原来指标。通常数学上的处理就是将原来p个指标作线性组合，作为新的综合指标</p>
+<h3 id="模糊评价"><a href="#模糊评价" class="headerlink" title="模糊评价"></a>模糊评价</h3><p>运用模糊综合评价法可以有效的 将一些定性指标进行定量化分析<br>比如，A大坝建设的过程中融资可能出现多个风险因素，而每个风险因素对A大坝的影响程度无法进行精准的量化评估，具有一定的模糊特征。基于此，采用模糊综合评价法对A大坝融资过程中可能发生的不确定性进行量化评估</p>
+<h2 id="预测类问题"><a href="#预测类问题" class="headerlink" title="预测类问题"></a>预测类问题</h2><p>一般的抽象系统，如社会系统、经济系统、农业系统、生态系统等都包含有众多的因素来共同决定了该系统的发展态势，所以系统分析就是要找出哪些是主要因素，那些事次要因素，那些因素对系统发展的影响最大，那些因素对系统发展的影响最小，那些因素对系统发展起推动作用不要强化发展，哪些因素对系统发展起阻碍作用要加以抑制</p>
+<h3 id="回归分析"><a href="#回归分析" class="headerlink" title="回归分析"></a>回归分析</h3><p>当样本个数n较大时，一般使用标准化回归,做数据拟合，算参数</p>
+<h3 id="微分方程预测"><a href="#微分方程预测" class="headerlink" title="微分方程预测"></a>微分方程预测</h3><p>一般适用于短中期预测。<br>例如：<br>传染病的预测模型、经济增长（或人口）的预测模型、Lanchester战争预测模型、药物在体内的分布与排除预测模型、烟雾的扩散与消失模型<br>构建方程，拟合参数<br><img src="https://s2.loli.net/2023/01/31/OWfgKj65UFLQXcw.png" alt="image _2_.png"></p>
+<h3 id="主成分分析-1"><a href="#主成分分析-1" class="headerlink" title="主成分分析"></a>主成分分析</h3><h3 id="灰色关联分析"><a href="#灰色关联分析" class="headerlink" title="灰色关联分析"></a>灰色关联分析</h3><p>作用：给出各个指标和结果，算权重，得到哪个影响力大。<br>可以是预测也可以是评价某个指标<br>当样本数n较少时，才使用灰色关联分析。<br>最后得出的灰色关联度在经过归一化后即为各个指标的权重。<br>到这一步得出的权重，谁的值大，那么哪个指标对系统的影响就大</p>
+<h3 id="元胞自动机"><a href="#元胞自动机" class="headerlink" title="元胞自动机"></a>元胞自动机</h3><p>一般以分子的方式模拟一些情况的变化。有益于当题目中分析不到指标，或者指标太过于抽象和学术时，以分子的形式创建指标。</p>
+<h3 id="神经网络模型-贝叶斯预测模型"><a href="#神经网络模型-贝叶斯预测模型" class="headerlink" title="神经网络模型 贝叶斯预测模型"></a>神经网络模型 贝叶斯预测模型</h3><p>小样本情况用贝叶斯预测模型<br>大样本用神经网络模型比较准确</p>
+<h2 id="分类和聚类"><a href="#分类和聚类" class="headerlink" title="分类和聚类"></a>分类和聚类</h2><p>一般是子问题需要做的一个步骤，常见的是，将大量的数据结果产生分类。</p>
+
+  <p><a class="classtest-link" href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" rel="tag">数学建模</a> — Jan 31, 2023</p>
+  
+
+
+          <div class="row mt-2">
+  
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
+        </a>
+        
+        at <a href="https://en.wikipedia.org/wiki/Earth" target="_blank" rel="noreferrer">Earth</a>.</p>
+        
+    </div>
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+      <a class="ml-0 footer-link icon" href="https://github.com/Jenqyang" target="_blank" style="text-decoration: none" rel="noreferrer" aria-label="GitHub">
+        <svg class="github svg-hov" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
+</div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>
